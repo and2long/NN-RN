@@ -64,7 +64,7 @@ export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>)
       <FlatList
         data={allTasks}
         renderItem={({ item }) => <TaskItem title={item["taskName"]} onClick={() => {
-          // TODO 2022-07-17 handle click event.
+          navigation.push("TaskDetail", item)
         }} />}
       />
     </View>
