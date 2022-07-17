@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import PrizeHeader from "../components/PrizeHeader";
-import TaskItem from "../components/TaskItem";
+import TaskItem, { TaskItemProps } from "../components/TaskItem";
 import { View } from "../components/Themed";
 import { RootTabScreenProps } from "../types";
 
@@ -57,15 +57,28 @@ export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>)
     }
   }
 
+  function getItemType(index: number): TaskItemProps["type"] {
+    if (index == 0) {
+      return "top"
+    } else if (index == allTasks.length - 1) {
+      return "bottom"
+    } else {
+      return "middle"
+    }
+  }
 
   return (
     <View style={styles.conatiner}>
       <PrizeHeader taskCount={allTasks.length} point={userPoint} />
       <FlatList
         data={allTasks}
-        renderItem={({ item }) => <TaskItem title={item["taskName"]} onClick={() => {
-          navigation.push("TaskDetail", item)
-        }} />}
+        renderItem={({ item, index }) => <TaskItem
+          type={getItemType(index)}
+          title={item["taskName"]}
+          onClick={() => {
+            navigation.push("TaskDetail", item)
+          }} />
+        }
       />
     </View>
   );
