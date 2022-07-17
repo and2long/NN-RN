@@ -10,7 +10,7 @@ export default function TaskItem(item: TaskBean) {
     <View style={styles.container}>
       <Image source={require("../assets/images/ic_interactive.png")} style={styles.leading} />
       <View style={styles.content}>
-        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.title} numberOfLines={1} ellipsizeMode={"tail"}>{item.title}</Text>
         <Text style={styles.subTitle}>可看10次，观看1次积分+10</Text>
       </View>
       <View style={styles.trailing}>
