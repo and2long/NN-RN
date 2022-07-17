@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ScrollView, StyleSheet } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import PrizeHeader from "../components/PrizeHeader";
 import TaskItem from "../components/TaskItem";
 import { View } from "../components/Themed";
@@ -49,8 +49,6 @@ export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>)
         }).then(r => r.json())
         .then(data => {
           if (data.success) {
-            console.log(data.retData);
-
             setAllTasks(data.retData)
           }
         })
@@ -63,9 +61,10 @@ export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>)
   return (
     <View style={styles.conatiner}>
       <PrizeHeader taskCount={allTasks.length} point={userPoint} />
-      <ScrollView >
-        {allTasks.map((item, index) => <TaskItem key={index} title={item["taskName"]} />)}
-      </ScrollView>
+      <FlatList
+        data={allTasks}
+        renderItem={({ item }) => <TaskItem title={item["taskName"]} />}
+      />
     </View>
   );
 }
