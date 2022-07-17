@@ -14,20 +14,25 @@ export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>)
   }, [])
 
   function getUserPoint() {
-    fetch(`http://test1-opapi.nn.com/nn-assist/taskPoints/findUserPoint/34758`,
-      {
-        method: "POST",
-        headers: {
-          "appId": "nnMobileIm_6z0g3ut7",
-          "reqChannel": "2",
-          "token": "nnMobileIm_6z0g3ut75a82e3aa717242b5a1b7a24e87387e31",
-        }
-      }).then(r => r.json())
-      .then(data => {
-        if (data.success) {
-          setUserPoint(data.retData.point)
-        }
-      })
+    try {
+      fetch(`http://test1-opapi.nn.com/nn-assist/taskPoints/findUserPoint/34758`,
+        {
+          method: "POST",
+          headers: {
+            "appId": "nnMobileIm_6z0g3ut7",
+            "reqChannel": "2",
+            "token": "nnMobileIm_6z0g3ut75a82e3aa717242b5a1b7a24e87387e31",
+          }
+        }).then(r => r.json())
+        .then(data => {
+          if (data.success) {
+            setUserPoint(data.retData.point)
+          }
+        })
+    } catch (error) {
+      console.error(error);
+
+    }
   }
 
   return (
