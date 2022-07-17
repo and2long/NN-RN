@@ -1,6 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { primaryColor } from "../constants/Colors";
+import Layout from "../constants/Layout";
 
 interface PrizeHeaderParams {
   taskCount: number
@@ -40,11 +41,11 @@ function PointView(params: { point: number }) {
 
 const styles = StyleSheet.create({
   container: {
-    height: Dimensions.get("window").width / 1.5 + 48
+    height: Layout.window.width / 1.5 + 48
   },
   headerBg: {
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").width / 1.5,
+    width: Layout.window.width,
+    height: Layout.window.width / 1.5,
     resizeMode: "contain"
   },
   headerTitie: {
@@ -74,12 +75,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 12,
     height: 96,
-    width: Dimensions.get("window").width - 30,
+    width: Layout.window.width - 30,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     position: "absolute",
-    marginTop: Dimensions.get("window").width / 1.5 - 48
+    marginTop: Layout.window.width / 1.5 - 48
   },
   pointTitle: {
     color: primaryColor,

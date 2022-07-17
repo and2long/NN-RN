@@ -1,5 +1,6 @@
-import { Dimensions, Image, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import { primaryColor } from "../constants/Colors";
+import Layout from "../constants/Layout";
 
 interface TaskItemParams {
   title: string
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     paddingHorizontal: 14,
-    width: Dimensions.get("window").width - 15 * 2,
+    width: Layout.window.width - 15 * 2,
     height: 70,
     flexDirection: "row",
     alignItems: "center",
