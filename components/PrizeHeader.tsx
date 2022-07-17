@@ -2,7 +2,11 @@ import { LinearGradient } from "expo-linear-gradient";
 import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { primaryColor } from "../constants/Colors";
 
-export default function PrizeHeader() {
+interface PrizeHeaderParams {
+  point: number
+}
+
+export default function PrizeHeader(params: PrizeHeaderParams) {
   return (
     <View>
       <View style={styles.container}>
@@ -11,7 +15,7 @@ export default function PrizeHeader() {
         <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={["rgba(255, 255, 255, 0.3)", "rgba(255, 255, 255, 0)"]} style={styles.headerSubtitleBg}>
           <Text style={styles.headerSubTitle}>今日还可以完成50个任务</Text>
         </LinearGradient>
-        <PointView />
+        <PointView point={params.point} />
       </View>
       <View style={styles.label}>
         <Text style={styles.labelTite}>每日任务</Text>
@@ -21,11 +25,11 @@ export default function PrizeHeader() {
   );
 }
 
-function PointView() {
+function PointView(params: PrizeHeaderParams) {
   return (
     <View style={styles.pointView}>
       <View>
-        <Text style={styles.pointTitle}>0</Text>
+        <Text style={styles.pointTitle}>{params.point}</Text>
         <Text style={styles.pointSubTitle}>已获得免排队积分</Text>
       </View>
       <Image source={require("../assets/images/ic_nav.png")} style={styles.pointNav} />
