@@ -3,6 +3,7 @@ import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import { primaryColor } from "../constants/Colors";
 
 interface PrizeHeaderParams {
+  taskCount: number
   point: number
 }
 
@@ -13,7 +14,7 @@ export default function PrizeHeader(params: PrizeHeaderParams) {
         <Image source={require("../assets/images/prize_bg.png")} style={styles.headerBg} />
         <Text style={styles.headerTitie}>做任务 享免费排队加速</Text>
         <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={["rgba(255, 255, 255, 0.3)", "rgba(255, 255, 255, 0)"]} style={styles.headerSubtitleBg}>
-          <Text style={styles.headerSubTitle}>今日还可以完成50个任务</Text>
+          <Text style={styles.headerSubTitle}>{`今日还可以完成${params.taskCount}个任务`}</Text>
         </LinearGradient>
         <PointView point={params.point} />
       </View>
@@ -25,7 +26,7 @@ export default function PrizeHeader(params: PrizeHeaderParams) {
   );
 }
 
-function PointView(params: PrizeHeaderParams) {
+function PointView(params: { point: number }) {
   return (
     <View style={styles.pointView}>
       <View>

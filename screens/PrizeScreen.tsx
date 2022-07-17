@@ -8,9 +8,11 @@ import { RootTabScreenProps } from "../types";
 export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>) {
 
   const [userPoint, setUserPoint] = useState(0)
+  const [allTasks, setAllTasks] = useState([])
 
   useEffect(() => {
     getUserPoint()
+    getAllTasks()
   }, [])
 
   function getUserPoint() {
@@ -31,15 +33,38 @@ export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>)
         })
     } catch (error) {
       console.error(error);
-
     }
   }
 
+  function getAllTasks() {
+    try {
+      fetch(`http://test1-opapi.nn.com/nn-assist/taskPoints/findAllTask`,
+        {
+          method: "POST",
+          headers: {
+            "appId": "nnMobileIm_6z0g3ut7",
+            "reqChannel": "2",
+            "token": "nnMobileIm_6z0g3ut75a82e3aa717242b5a1b7a24e87387e31",
+          }
+        }).then(r => r.json())
+        .then(data => {
+          if (data.success) {
+            console.log(data.retData);
+
+            setAllTasks(data.retData)
+          }
+        })
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
   return (
     <View style={styles.conatiner}>
-      <PrizeHeader point={userPoint} />
+      <PrizeHeader taskCount={allTasks.length} point={userPoint} />
       <ScrollView >
-        {Array.from({ length: 10 }, (_, i) => <TaskItem key={i} title={"观看激励视频"} />)}
+        {allTasks.map((item, index) => <TaskItem key={index} title={item["taskName"]} />)}
       </ScrollView>
     </View>
   );
