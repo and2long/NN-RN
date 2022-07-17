@@ -3,9 +3,9 @@ import { primaryColor } from "../constants/Colors";
 import Layout from "../constants/Layout";
 
 export type TaskItemProps = {
+  type: 'top' | 'middle' | 'bottom'
   title: string
-  type: 'top' | 'middle' | 'bottom',
-  onClick?: () => void,
+  onClick?: () => void
 }
 
 export default function TaskItem(props: TaskItemProps) {

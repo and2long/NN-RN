@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { View } from "../components/Themed";
 import { RootStackParamList } from "../types";
 
@@ -8,8 +8,16 @@ type Props = NativeStackScreenProps<RootStackParamList, "TaskDetail">
 export default function TaskDetailScreen({ route }: Props) {
 
   return (
-    <View>
-      <Text>{JSON.stringify(route.params)}</Text>
+    <View style={styles.container}>
+      <Text>{JSON.stringify(route.params, null, 2)}</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "white",
+    padding: 16
+  }
+})
