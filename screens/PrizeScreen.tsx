@@ -63,7 +63,9 @@ export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>)
       <PrizeHeader taskCount={allTasks.length} point={userPoint} />
       <FlatList
         data={allTasks}
-        renderItem={({ item }) => <TaskItem title={item["taskName"]} />}
+        renderItem={({ item }) => <TaskItem title={item["taskName"]} onClick={() => {
+          // TODO 2022-07-17 handle click event.
+        }} />}
       />
     </View>
   );

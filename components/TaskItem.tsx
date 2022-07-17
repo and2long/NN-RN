@@ -1,21 +1,24 @@
-import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
+import { Dimensions, Image, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import { primaryColor } from "../constants/Colors";
 
-interface TaskBean {
+interface TaskItemParams {
   title: string
+  onClick?: () => void
 }
 
-export default function TaskItem(item: TaskBean) {
+export default function TaskItem(params: TaskItemParams) {
   return (
     <View style={styles.container}>
       <Image source={require("../assets/images/ic_interactive.png")} style={styles.leading} />
       <View style={styles.content}>
-        <Text style={styles.title} numberOfLines={1} ellipsizeMode={"tail"}>{item.title}</Text>
+        <Text style={styles.title} numberOfLines={1} ellipsizeMode={"tail"}>{params.title}</Text>
         <Text style={styles.subTitle}>可看10次，观看1次积分+10</Text>
       </View>
-      <View style={styles.trailing}>
-        <Text style={styles.do}>去完成</Text>
-      </View>
+      <TouchableWithoutFeedback onPress={params.onClick}>
+        <View style={styles.trailing}>
+          <Text style={styles.do}>去完成</Text>
+        </View>
+      </TouchableWithoutFeedback>
     </View>
   );
 }
