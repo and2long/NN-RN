@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    marginHorizontal: 14,
+    marginHorizontal: 10,
   },
   title: {
     fontSize: 16,
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     color: "#808080",
-    fontSize: 14
+    fontSize: 13
   },
   trailing: {
     width: 72,
