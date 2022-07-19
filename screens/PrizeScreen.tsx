@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import PrizeHeader from "../components/PrizeHeader";
 import TaskItem, { TaskItemProps } from "../components/TaskItem";
 import { View } from "../components/Themed";
+import { findUserPoint } from "../redux/action";
+import { AppState, UserPoint } from "../redux/data";
 import { RootTabScreenProps } from "../types";
 
 export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>) {
 
   const [userPoint, setUserPoint] = useState(0)
   const [allTasks, setAllTasks] = useState([])
+  const dispatch = useDispatch();
+  const point: UserPoint = useSelector((state: AppState) => state.userPoint);
 
   useEffect(() => {
-    getUserPoint()
+    // getUserPoint()
     getAllTasks()
+    dispatch(findUserPoint(34758))
   }, [])
 
   function getUserPoint() {
@@ -69,7 +75,7 @@ export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>)
 
   return (
     <View style={styles.conatiner}>
-      <PrizeHeader taskCount={allTasks.length} point={userPoint} />
+      <PrizeHeader taskCount={allTasks.length} point={point.point} />
       <FlatList
         data={allTasks}
         renderItem={({ item, index }) => <TaskItem
