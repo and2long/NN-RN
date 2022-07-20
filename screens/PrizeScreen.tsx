@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import { FlatList, StyleSheet } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
 import PrizeHeader from "../components/PrizeHeader";
 import TaskItem, { TaskItemProps } from "../components/TaskItem";
 import { View } from "../components/Themed";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { getAllTasks, getUserPoint } from "../redux/prizeSlices";
+import { fetchAllTasks, getUserPoint } from "../redux/prizeSlices";
 import { RootTabScreenProps } from "../types";
 
 export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>) {
@@ -15,13 +15,13 @@ export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>)
 
   useEffect(() => {
     dispatch(getUserPoint())
-    dispatch(getAllTasks())
+    dispatch(fetchAllTasks())
   }, [])
 
   function getItemType(index: number): TaskItemProps["type"] {
     if (index == 0) {
       return "top"
-    } else if (index == allTasks.length - 1) {
+    } else if (index == allTasks.items.length - 1) {
       return "bottom"
     } else {
       return "middle"
@@ -30,17 +30,19 @@ export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>)
 
   return (
     <View style={styles.conatiner}>
-      <PrizeHeader taskCount={allTasks.length} point={point} />
-      <FlatList
-        data={allTasks}
-        renderItem={({ item, index }) => <TaskItem
-          type={getItemType(index)}
-          title={item.taskName}
-          onClick={() => {
-            navigation.push("TaskDetail", item)
-          }} />
-        }
-      />
+      <PrizeHeader taskCount={allTasks.items.length} point={point} />
+      {allTasks.status === 'idle' &&
+        <FlatList
+          data={allTasks.items}
+          renderItem={({ item, index }) => <TaskItem
+            type={getItemType(index)}
+            title={item.taskName}
+            onClick={() => {
+              navigation.push("TaskDetail", item)
+            }} />
+          }
+        />}
+      {allTasks.status === 'loading' && <ActivityIndicator style={styles.indicator} />}
     </View>
   );
 }
@@ -51,5 +53,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#efefef"
   },
+  indicator: {
+    flex: 1
+  }
 })
 
