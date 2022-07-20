@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userPointSlice from "./prizeSlices";
+import { allTasksSlice, userPointSlice } from "./prizeSlices";
 
 export const store = configureStore({
   reducer: {
-    userPoint: userPointSlice,
+    userPoint: userPointSlice.reducer,
+    allTasks: allTasksSlice.reducer,
   }
 })
 
