@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { sleep } from "./utils";
 
 export const userPointSlice = createSlice({
   name: 'userPoint',
@@ -37,14 +38,7 @@ export const allTasksSlice = createSlice({
       })
       .addCase(fetchAllTasks.fulfilled, (state, action) => {
         state.status = 'idle';
-        const items = []
-        const data = action.payload["retData"]
-        for (let index = 0; index < data.length; index++) {
-          const element = data[index];
-          const item = { id: element.id, taskName: element.taskName }
-          items.push(item)
-        }
-        state.items = items
+        state.items = action.payload
       })
       .addCase(fetchAllTasks.rejected, (state) => {
         state.status = 'failed';
@@ -53,13 +47,13 @@ export const allTasksSlice = createSlice({
 })
 
 export const fetchAllTasks = createAsyncThunk('prize/getAllTasks', async () => {
-  const response = await fetch(`http://test1-opapi.nn.com/nn-assist/taskPoints/findAllTask`, {
-    method: "POST",
-    headers: {
-      "appId": "nnMobileIm_6z0g3ut7",
-      "reqChannel": "2",
-      "token": "nnMobileIm_6z0g3ut75a82e3aa717242b5a1b7a24e87387e31",
-    }
-  })
-  return response.json()
+  await sleep(1000)
+  const names = [
+    "开屏广告",
+    "激励视频广告",
+    "全屏视频广告",
+    "自渲染贴片广告",
+    "自渲染信息流",
+    "自渲染插屏"]
+  return names.map((item, index) => ({ id: index, taskName: item }))
 })
