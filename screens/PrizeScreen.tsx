@@ -4,7 +4,7 @@ import PrizeHeader from "../components/PrizeHeader";
 import TaskItem, { TaskItemProps } from "../components/TaskItem";
 import { View } from "../components/Themed";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { fetchAllTasks, getUserPoint } from "../redux/prizeSlices";
+import { fetchAllTasks, getUserPoint } from "../redux/prizeSlice";
 import { RootTabScreenProps } from "../types";
 
 export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>) {

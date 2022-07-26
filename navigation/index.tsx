@@ -8,10 +8,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
+import { useEffect } from 'react';
 import { ColorSchemeName } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
+import { getAuthState } from '../redux/authSlice';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import LoginScreen from '../screens/LoginScreen';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import PrizeScreen from '../screens/PrizeScreen';
@@ -37,9 +41,19 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const isAuth = useAppSelector(state => state.authState.value)
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(getAuthState())
+  }, [])
+
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+      {isAuth
+        ? <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+        : <Stack.Screen name="Login" component={LoginScreen} />
+      }
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Screen name="TaskDetail" component={TaskDetailScreen} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>

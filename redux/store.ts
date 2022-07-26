@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { allTasksSlice, userPointSlice } from "./prizeSlices";
+import { authSlice } from "./authSlice";
+import { allTasksSlice, userPointSlice } from "./prizeSlice";
 
 export const store = configureStore({
   reducer: {
+    authState: authSlice.reducer,
     userPoint: userPointSlice.reducer,
     allTasks: allTasksSlice.reducer,
   }
