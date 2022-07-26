@@ -1,13 +1,18 @@
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import React from "react";
-import { Image, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
+import { ActivityIndicator, Image, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View } from '../components/Themed';
 import { accentColor } from '../constants/Colors';
 import Layout from '../constants/Layout';
+import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { login } from '../redux/slices/loginSlice';
 import { RootStackScreenProps } from "../types";
 
 export default function LoginScreen({ navigation }: RootStackScreenProps<'Login'>) {
+  const loginState = useAppSelector(state => state.loginState)
+  const dispatch = useAppDispatch()
+
   return (
     <View style={styles.container}>
       <SafeAreaView>
@@ -22,9 +27,14 @@ export default function LoginScreen({ navigation }: RootStackScreenProps<'Login'
             <MaterialIcons name="security" size={14} color="#d1d1d1" />
             <Text style={styles.tipText}>手机认证服务由中国移动提供</Text>
           </View>
-          <TouchableWithoutFeedback onPress={() => { }}>
+          <TouchableWithoutFeedback onPress={() => {
+            if (loginState.status !== 'loading') {
+              dispatch(login())
+            }
+          }}>
             <View style={styles.btnOneLogin}>
-              <Text style={styles.btnText}>本机号码一键登录</Text>
+              {loginState.status === 'idle' && <Text style={styles.btnText}>本机号码一键登录</Text>}
+              {loginState.status === 'loading' && <ActivityIndicator size={24} color="white" />}
             </View>
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback onPress={() => { }}>

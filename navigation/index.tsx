@@ -13,8 +13,8 @@ import { ColorSchemeName } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import { getAuthState } from '../redux/authSlice';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { getAuthState } from '../redux/slices/authSlice';
 import LoginScreen from '../screens/LoginScreen';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';

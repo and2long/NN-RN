@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { sleep } from "./utils";
+import { sleep } from "../utils";
 
 export const userPointSlice = createSlice({
   name: 'userPoint',
