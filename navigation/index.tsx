@@ -19,6 +19,7 @@ import LoginScreen from '../screens/LoginScreen';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import PrizeScreen from '../screens/PrizeScreen';
+import SplashScreen from '../screens/SplashScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import TaskDetailScreen from '../screens/TaskDetailScreen';
 import { RootStackParamList, RootTabParamList } from '../types';
@@ -41,7 +42,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
-  const isAuth = useAppSelector(state => state.authState.value)
+  const authState = useAppSelector(state => state.authState)
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -50,9 +51,11 @@ function RootNavigator() {
 
   return (
     <Stack.Navigator>
-      {isAuth
-        ? <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-        : <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+      {authState.loading ?
+        <Stack.Screen name="Splash" component={SplashScreen} options={{ headerShown: false }} /> :
+        authState.isAuth
+          ? <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+          : <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
       }
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Screen name="TaskDetail" component={TaskDetailScreen} />

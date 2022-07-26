@@ -1,17 +1,22 @@
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
-import React from "react";
+import React, { useEffect } from "react";
 import { ActivityIndicator, Image, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View } from '../components/Themed';
 import { accentColor } from '../constants/Colors';
 import Layout from '../constants/Layout';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
+import { getAuthState } from '../redux/slices/authSlice';
 import { login } from '../redux/slices/loginSlice';
 import { RootStackScreenProps } from "../types";
 
 export default function LoginScreen({ navigation }: RootStackScreenProps<'Login'>) {
   const loginState = useAppSelector(state => state.loginState)
   const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(getAuthState())
+  }, [loginState])
 
   return (
     <View style={styles.container}>

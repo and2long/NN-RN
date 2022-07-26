@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { sleep } from "../utils";
 
@@ -35,5 +36,6 @@ export const loginSlice = createSlice({
 
 export const login = createAsyncThunk('auth/login', async () => {
   await sleep(1000)
+  await AsyncStorage.setItem('@token', "login_token")
   return { id: "123", token: "login_token" }
 })
