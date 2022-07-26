@@ -52,7 +52,7 @@ function RootNavigator() {
     <Stack.Navigator>
       {isAuth
         ? <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-        : <Stack.Screen name="Login" component={LoginScreen} />
+        : <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
       }
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Screen name="TaskDetail" component={TaskDetailScreen} />
