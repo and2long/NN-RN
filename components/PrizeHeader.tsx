@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Platform, StyleSheet, Text, View } from "react-native";
 import { primaryColor } from "../constants/Colors";
 import Layout from "../constants/Layout";
 
@@ -39,14 +39,16 @@ function PointView(params: { point: number }) {
   );
 }
 
+const headerBgHeight = Platform.OS === 'web' ? 250 : Layout.window.width / 1.5
+
 const styles = StyleSheet.create({
   container: {
-    height: Layout.window.width / 1.5 + 48
+    height: headerBgHeight + 48
   },
   headerBg: {
     width: Layout.window.width,
-    height: Layout.window.width / 1.5,
-    resizeMode: "contain"
+    height: headerBgHeight,
+    resizeMode: Platform.OS === 'web' ? "cover" : "contain"
   },
   headerTitie: {
     position: "absolute",
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     position: "absolute",
-    marginTop: Layout.window.width / 1.5 - 48
+    marginTop: headerBgHeight - 48
   },
   pointTitle: {
     color: primaryColor,

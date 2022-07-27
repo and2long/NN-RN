@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { Alert, Image, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+import { Alert, Image, Platform, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import SettingItem from '../components/SettingItem';
 import { accentColor } from '../constants/Colors';
 import Layout from "../constants/Layout";
@@ -64,7 +64,9 @@ export default function MineScreen({ navigation }: RootTabScreenProps<'Mine'>) {
   )
 }
 
-const marginTop = 80
+const avatarMarginTop = 80
+const headerBgHeight = Platform.OS === 'web' ? 250 : Layout.window.width / 150 * 113
+const headerBgResizeMode = Platform.OS === 'web' ? "cover" : "contain"
 
 const styles = StyleSheet.create({
   container: {
@@ -76,8 +78,8 @@ const styles = StyleSheet.create({
   },
   headerBg: {
     width: Layout.window.width,
-    height: Layout.window.width / 150 * 113,
-    resizeMode: "contain"
+    height: headerBgHeight,
+    resizeMode: headerBgResizeMode
   },
   avatar: {
     position: 'absolute',
@@ -86,7 +88,7 @@ const styles = StyleSheet.create({
     borderRadius: 35,
     borderWidth: 2,
     borderColor: 'white',
-    marginTop: marginTop
+    marginTop: avatarMarginTop
   },
   cameraBg: {
     position: 'absolute',
@@ -96,7 +98,7 @@ const styles = StyleSheet.create({
     backgroundColor: accentColor,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: marginTop + 46,
+    marginTop: avatarMarginTop + 46,
     marginLeft: Layout.window.width / 2 + 10
   },
   camera: {
@@ -104,14 +106,14 @@ const styles = StyleSheet.create({
   },
   nickName: {
     position: 'absolute',
-    marginTop: marginTop + 90,
+    marginTop: avatarMarginTop + 90,
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold'
   },
   userId: {
     position: 'absolute',
-    marginTop: marginTop + 120,
+    marginTop: avatarMarginTop + 120,
     color: '#808080',
     fontSize: 12,
   }
