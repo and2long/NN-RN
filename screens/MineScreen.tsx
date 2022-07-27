@@ -1,11 +1,28 @@
 import { Ionicons } from '@expo/vector-icons';
+import * as ImagePicker from 'expo-image-picker';
 import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
 import { Alert, Image, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import SettingItem from '../components/SettingItem';
 import { accentColor } from '../constants/Colors';
 import Layout from "../constants/Layout";
 import { RootTabScreenProps } from "../types";
+
 export default function MineScreen({ navigation }: RootTabScreenProps<'Mine'>) {
+  const [image, setImage] = useState("");
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1, 1],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
 
   const onNickNameItemClick = () => {
     Alert.prompt(
@@ -29,15 +46,17 @@ export default function MineScreen({ navigation }: RootTabScreenProps<'Mine'>) {
       <StatusBar style="light" />
       <View style={styles.header}>
         <Image source={require("../assets/images/mine_bg.png")} style={styles.headerBg} />
-        <TouchableWithoutFeedback onPress={() => { }}>
-          <Image source={require("../assets/images/avatar.webp")} style={styles.avatar} />
+        <TouchableWithoutFeedback onPress={pickImage}>
+          <Image source={image ? { uri: image } : require("../assets/images/avatar.webp")} style={styles.avatar} />
         </TouchableWithoutFeedback>
         <Text style={styles.nickName}>快乐男孩</Text>
         <Text style={styles.userId}>ID:8888</Text>
       </View>
-      <View style={styles.cameraBg}>
-        <Ionicons name="camera-outline" size={18} color="white" style={styles.camera} />
-      </View>
+      <TouchableWithoutFeedback onPress={pickImage}>
+        <View style={styles.cameraBg}>
+          <Ionicons name="camera-outline" size={18} color="white" style={styles.camera} />
+        </View>
+      </TouchableWithoutFeedback>
       <SettingItem ionIconName={'person-outline'} title={'昵称'} onclick={onNickNameItemClick} />
       <SettingItem ionIconName={'location-outline'} title={'所在地'} onclick={() => { }} />
       <SettingItem ionIconName={'settings-outline'} title={'设置'} onclick={() => { navigation.push("Settings") }} />
