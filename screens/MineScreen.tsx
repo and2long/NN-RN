@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 import { accentColor } from '../constants/Colors';
 import Layout from "../constants/Layout";
 import { RootTabScreenProps } from "../types";
@@ -11,6 +11,8 @@ export default function MineScreen({ navigation }: RootTabScreenProps<'Mine'>) {
       <View style={styles.header}>
         <Image source={require("../assets/images/mine_bg.png")} style={styles.headerBg} />
         <Image source={require("../assets/images/avatar.webp")} style={styles.avatar} />
+        <Text style={styles.nickName}>快乐男孩</Text>
+        <Text style={styles.userId}>ID:8888</Text>
       </View>
       <View style={styles.cameraBg}>
         <Ionicons name="camera-outline" size={18} color="white" style={styles.camera} />
@@ -19,12 +21,13 @@ export default function MineScreen({ navigation }: RootTabScreenProps<'Mine'>) {
   )
 }
 
+const marginTop = 80
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   header: {
-    justifyContent: 'center',
     alignItems: 'center'
   },
   headerBg: {
@@ -38,7 +41,8 @@ const styles = StyleSheet.create({
     height: 70,
     borderRadius: 35,
     borderWidth: 2,
-    borderColor: 'white'
+    borderColor: 'white',
+    marginTop: marginTop
   },
   cameraBg: {
     position: 'absolute',
@@ -48,10 +52,23 @@ const styles = StyleSheet.create({
     backgroundColor: accentColor,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: Layout.window.width / 150 * 113 / 2 + 10,
+    marginTop: marginTop + 46,
     marginLeft: Layout.window.width / 2 + 10
   },
   camera: {
     position: 'absolute',
+  },
+  nickName: {
+    position: 'absolute',
+    marginTop: marginTop + 90,
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  userId: {
+    position: 'absolute',
+    marginTop: marginTop + 120,
+    color: '#808080',
+    fontSize: 12,
   }
 })
