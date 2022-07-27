@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
 import { Image, StyleSheet, Text, View } from "react-native";
+import SettingItem from '../components/SettingItem';
 import { accentColor } from '../constants/Colors';
 import Layout from "../constants/Layout";
 import { RootTabScreenProps } from "../types";
@@ -17,6 +18,10 @@ export default function MineScreen({ navigation }: RootTabScreenProps<'Mine'>) {
       <View style={styles.cameraBg}>
         <Ionicons name="camera-outline" size={18} color="white" style={styles.camera} />
       </View>
+      <SettingItem ionIconName={'person-outline'} title={'昵称'} onclick={() => { }} />
+      <SettingItem ionIconName={'pencil-outline'} title={'个性签名'} onclick={() => { }} />
+      <SettingItem ionIconName={'location-outline'} title={'所在地'} onclick={() => { }} />
+      <SettingItem ionIconName={'settings-outline'} title={'设置'} onclick={() => { }} />
     </View>
   )
 }
@@ -28,7 +33,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: 20
   },
   headerBg: {
     width: Layout.window.width,
