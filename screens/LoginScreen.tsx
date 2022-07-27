@@ -1,6 +1,6 @@
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import React, { useEffect } from "react";
-import { ActivityIndicator, Image, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
+import { ActivityIndicator, BackHandler, Image, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View } from '../components/Themed';
 import { accentColor } from '../constants/Colors';
@@ -21,7 +21,7 @@ export default function LoginScreen({ navigation }: RootStackScreenProps<'Login'
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <TouchableWithoutFeedback onPress={() => { }}>
+        <TouchableWithoutFeedback onPress={() => { BackHandler.exitApp() }}>
           <AntDesign name="close" size={24} color="black" style={{ margin: 16 }} />
         </TouchableWithoutFeedback>
 
