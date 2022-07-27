@@ -1,8 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from "react";
-import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import Dialog from "react-native-dialog";
+import React from "react";
+import { Alert, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import SettingItem from '../components/SettingItem';
 import Layout from '../constants/Layout';
 import { useAppDispatch } from '../redux/hooks';
@@ -11,22 +10,24 @@ import { RootStackParamList } from '../types';
 
 export default function SettingsScreen({ navigation }: NativeStackScreenProps<RootStackParamList, "Settings">) {
 
-  const [visible, setVisible] = useState(false);
   const dispatch = useAppDispatch()
 
-  const showDialog = () => {
-    setVisible(true);
-  };
+  const showLogoutDialog = () => Alert.alert(
+    "",
+    "确认退出登录？",
+    [
+      {
+        text: "取消",
+      },
+      {
+        text: "确认", onPress: () => {
+          dispatch(clearAuthState())
+          navigation.navigate("Root")
+        }
+      }
+    ]
+  );
 
-  const handleCancel = () => {
-    setVisible(false);
-  };
-
-  const handleOK = () => {
-    setVisible(false);
-    dispatch(clearAuthState())
-    navigation.navigate("Root")
-  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -39,18 +40,11 @@ export default function SettingsScreen({ navigation }: NativeStackScreenProps<Ro
       <SettingItem title={'隐私政策'} />
       <View style={styles.divider} />
       <View style={{ flex: 1 }} />
-      <TouchableOpacity onPress={showDialog}>
+      <TouchableOpacity onPress={showLogoutDialog}>
         <View style={styles.btnLogout}>
           <Text>退出</Text>
         </View>
       </TouchableOpacity>
-
-      <Dialog.Container visible={visible}>
-        <Dialog.Description>确认退出登录？</Dialog.Description>
-        <Dialog.Button label="取消" onPress={handleCancel} />
-        <Dialog.Button label="确认" onPress={handleOK} />
-      </Dialog.Container>
-
     </SafeAreaView>
   )
 }
