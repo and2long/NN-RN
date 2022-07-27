@@ -3,7 +3,7 @@ import { Image, StyleSheet, View } from "react-native";
 import Layout from "../constants/Layout";
 import { RootTabScreenProps } from "../types";
 
-export default function ProfileScreen({ navigation }: RootTabScreenProps<'Profile'>) {
+export default function MineScreen({ navigation }: RootTabScreenProps<'Mine'>) {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />

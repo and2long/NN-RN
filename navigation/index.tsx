@@ -15,10 +15,10 @@ import useColorScheme from '../hooks/useColorScheme';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { getAuthState } from '../redux/slices/authSlice';
 import LoginScreen from '../screens/LoginScreen';
+import MineScreen from '../screens/MineScreen';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import PrizeScreen from '../screens/PrizeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
 import SplashScreen from '../screens/SplashScreen';
 import TaskDetailScreen from '../screens/TaskDetailScreen';
 import { RootStackParamList, RootTabParamList } from '../types';
@@ -89,8 +89,8 @@ function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Profile"
-        component={ProfileScreen}
+        name="Mine"
+        component={MineScreen}
         options={{
           tabBarIcon: ({ color }) => <Ionicons name="person-circle-outline" size={30} color={color} />,
         }}
