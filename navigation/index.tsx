@@ -19,6 +19,7 @@ import MineScreen from '../screens/MineScreen';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import PrizeScreen from '../screens/PrizeScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 import SplashScreen from '../screens/SplashScreen';
 import TaskDetailScreen from '../screens/TaskDetailScreen';
 import { RootStackParamList, RootTabParamList } from '../types';
@@ -58,6 +59,7 @@ function RootNavigator() {
       }
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Screen name="TaskDetail" component={TaskDetailScreen} />
+      <Stack.Screen name="Settings" component={SettingsScreen} options={{ title: '设置', headerBackTitleVisible: false }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
       </Stack.Group>

@@ -19,9 +19,8 @@ export default function MineScreen({ navigation }: RootTabScreenProps<'Mine'>) {
         <Ionicons name="camera-outline" size={18} color="white" style={styles.camera} />
       </View>
       <SettingItem ionIconName={'person-outline'} title={'昵称'} onclick={() => { }} />
-      <SettingItem ionIconName={'pencil-outline'} title={'个性签名'} onclick={() => { }} />
       <SettingItem ionIconName={'location-outline'} title={'所在地'} onclick={() => { }} />
-      <SettingItem ionIconName={'settings-outline'} title={'设置'} onclick={() => { }} />
+      <SettingItem ionIconName={'settings-outline'} title={'设置'} onclick={() => { navigation.push("Settings") }} />
     </View>
   )
 }

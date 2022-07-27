@@ -1,19 +1,21 @@
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Layout from "../constants/Layout";
 
 interface SettingItemProps {
-  ionIconName: React.ComponentProps<typeof Ionicons>['name']
+  ionIconName?: React.ComponentProps<typeof Ionicons>['name']
   title: string
-  onclick: () => void
+  onclick?: () => void
 }
 export default function SettingItem(props: SettingItemProps) {
   return (
-    <View style={styles.container}>
-      <Ionicons name={props.ionIconName} size={24} color="gray" style={styles.icon} />
-      <Text style={styles.title}>{props.title}</Text>
-      <MaterialIcons name="navigate-next" size={24} color="gray" style={styles.arrow} />
-    </View>
+    <TouchableOpacity onPress={props.onclick}>
+      <View style={styles.container}>
+        {props.ionIconName && <Ionicons name={props.ionIconName} size={24} color="gray" style={styles.icon} />}
+        <Text style={styles.title}>{props.title}</Text>
+        <MaterialIcons name="navigate-next" size={24} color="gray" style={styles.arrow} />
+      </View>
+    </TouchableOpacity>
   )
 }
 
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    marginHorizontal: 20
+    marginLeft: 20
   },
   arrow: {
     marginHorizontal: 20
@@ -33,6 +35,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     color: '#111111',
-    flex: 1
+    flex: 1,
+    marginLeft: 20
   }
 })

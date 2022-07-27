@@ -22,6 +22,7 @@ export type RootStackParamList = {
   Login: undefined;
   TaskDetail: Task;
   Mine: undefined;
+  Settings: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
