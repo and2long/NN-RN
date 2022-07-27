@@ -1,24 +1,44 @@
 import { Ionicons } from '@expo/vector-icons';
 import { StatusBar } from 'expo-status-bar';
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Alert, Image, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
 import SettingItem from '../components/SettingItem';
 import { accentColor } from '../constants/Colors';
 import Layout from "../constants/Layout";
 import { RootTabScreenProps } from "../types";
 export default function MineScreen({ navigation }: RootTabScreenProps<'Mine'>) {
+
+  const onNickNameItemClick = () => {
+    Alert.prompt(
+      "修改昵称",
+      undefined,
+      [
+        {
+          text: "Cancel",
+        },
+        {
+          text: "OK",
+          onPress: password => console.log("OK Pressed: " + password)
+        }
+      ],
+      "plain-text"
+    );
+  }
+
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
       <View style={styles.header}>
         <Image source={require("../assets/images/mine_bg.png")} style={styles.headerBg} />
-        <Image source={require("../assets/images/avatar.webp")} style={styles.avatar} />
+        <TouchableWithoutFeedback onPress={() => { }}>
+          <Image source={require("../assets/images/avatar.webp")} style={styles.avatar} />
+        </TouchableWithoutFeedback>
         <Text style={styles.nickName}>快乐男孩</Text>
         <Text style={styles.userId}>ID:8888</Text>
       </View>
       <View style={styles.cameraBg}>
         <Ionicons name="camera-outline" size={18} color="white" style={styles.camera} />
       </View>
-      <SettingItem ionIconName={'person-outline'} title={'昵称'} onclick={() => { }} />
+      <SettingItem ionIconName={'person-outline'} title={'昵称'} onclick={onNickNameItemClick} />
       <SettingItem ionIconName={'location-outline'} title={'所在地'} onclick={() => { }} />
       <SettingItem ionIconName={'settings-outline'} title={'设置'} onclick={() => { navigation.push("Settings") }} />
     </View>
