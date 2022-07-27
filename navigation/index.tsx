@@ -52,16 +52,16 @@ function RootNavigator() {
   return (
     <Stack.Navigator>
       {authState.loading ?
-        <Stack.Screen name="Splash" component={SplashScreen} options={{ headerShown: false }} /> :
+        <Stack.Screen name="splash" component={SplashScreen} options={{ headerShown: false }} /> :
         authState.isAuth
-          ? <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-          : <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
+          ? <Stack.Screen name="root" component={BottomTabNavigator} options={{ headerShown: false }} />
+          : <Stack.Screen name="login" component={LoginScreen} options={{ headerShown: false }} />
       }
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
-      <Stack.Screen name="TaskDetail" component={TaskDetailScreen} />
-      <Stack.Screen name="Settings" component={SettingsScreen} options={{ title: '设置', headerBackTitleVisible: false }} />
+      <Stack.Screen name="notFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+      <Stack.Screen name="taskDetail" component={TaskDetailScreen} />
+      <Stack.Screen name="settings" component={SettingsScreen} options={{ title: '设置', headerBackTitleVisible: false }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="modal" component={ModalScreen} />
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -78,13 +78,13 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="Prize"
+      initialRouteName="prize"
       screenOptions={{
         tabBarActiveTintColor: accentColor,
         headerShown: false
       }}>
       <BottomTab.Screen
-        name="Prize"
+        name="prize"
         component={PrizeScreen}
         options={{
           tabBarIcon: ({ color }) => <Ionicons name="gift-outline" size={28} color={color} />,
@@ -92,7 +92,7 @@ function BottomTabNavigator() {
         }}
       />
       <BottomTab.Screen
-        name="Mine"
+        name="mine"
         component={MineScreen}
         options={{
           tabBarIcon: ({ color }) => <Ionicons name="person-circle-outline" size={30} color={color} />,

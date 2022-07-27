@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { fetchAllTasks, getUserPoint } from "../redux/slices/prizeSlice";
 import { RootTabScreenProps } from "../types";
 
-export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>) {
+export default function PrizeScreen({ navigation }: RootTabScreenProps<'prize'>) {
 
   const point = useAppSelector(state => state.userPoint.value)
   const allTasks = useAppSelector(state => state.allTasks)
@@ -38,7 +38,7 @@ export default function PrizeScreen({ navigation }: RootTabScreenProps<'Prize'>)
             type={getItemType(index)}
             title={item.taskName}
             onClick={() => {
-              navigation.push("TaskDetail", item)
+              navigation.push("taskDetail", item)
             }} />
           }
         />}

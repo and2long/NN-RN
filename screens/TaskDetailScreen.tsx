@@ -4,7 +4,7 @@ import { StyleSheet, Text } from "react-native";
 import { View } from "../components/Themed";
 import { RootStackParamList } from "../types";
 
-type Props = NativeStackScreenProps<RootStackParamList, "TaskDetail">
+type Props = NativeStackScreenProps<RootStackParamList, "taskDetail">
 
 export default function TaskDetailScreen({ route }: Props) {
 

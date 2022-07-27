@@ -10,7 +10,7 @@ import { getAuthState } from '../redux/slices/authSlice';
 import { login } from '../redux/slices/loginSlice';
 import { RootStackScreenProps } from "../types";
 
-export default function LoginScreen({ navigation }: RootStackScreenProps<'Login'>) {
+export default function LoginScreen({ navigation }: RootStackScreenProps<'login'>) {
   const loginState = useAppSelector(state => state.loginState)
   const dispatch = useAppDispatch()
 

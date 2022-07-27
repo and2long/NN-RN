@@ -8,7 +8,7 @@ import { useAppDispatch } from '../redux/hooks';
 import { clearAuthState } from '../redux/slices/authSlice';
 import { RootStackParamList } from '../types';
 
-export default function SettingsScreen({ navigation }: NativeStackScreenProps<RootStackParamList, "Settings">) {
+export default function SettingsScreen({ navigation }: NativeStackScreenProps<RootStackParamList, "settings">) {
 
   const dispatch = useAppDispatch()
 
@@ -22,7 +22,7 @@ export default function SettingsScreen({ navigation }: NativeStackScreenProps<Ro
       {
         text: "确认", onPress: () => {
           dispatch(clearAuthState())
-          navigation.navigate("Root")
+          navigation.navigate("root")
         }
       }
     ]

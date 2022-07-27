@@ -13,7 +13,7 @@ const linking: LinkingOptions<RootStackParamList> = {
   prefixes: [Linking.makeUrl('/')],
   config: {
     screens: {
-      Root: {
+      root: {
         screens: {
           Prize: {
             screens: {
@@ -27,8 +27,8 @@ const linking: LinkingOptions<RootStackParamList> = {
           },
         },
       },
-      Modal: 'modal',
-      NotFound: '*',
+      modal: 'modal',
+      notFound: '*',
     },
   },
 };

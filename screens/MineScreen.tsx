@@ -8,7 +8,7 @@ import { accentColor } from '../constants/Colors';
 import Layout from "../constants/Layout";
 import { RootTabScreenProps } from "../types";
 
-export default function MineScreen({ navigation }: RootTabScreenProps<'Mine'>) {
+export default function MineScreen({ navigation }: RootTabScreenProps<'mine'>) {
   const [image, setImage] = useState("");
 
   const pickImage = async () => {
@@ -59,7 +59,7 @@ export default function MineScreen({ navigation }: RootTabScreenProps<'Mine'>) {
       </TouchableWithoutFeedback>
       <SettingItem ionIconName={'person-outline'} title={'昵称'} onclick={onNickNameItemClick} />
       <SettingItem ionIconName={'location-outline'} title={'所在地'} onclick={() => { }} />
-      <SettingItem ionIconName={'settings-outline'} title={'设置'} onclick={() => { navigation.push("Settings") }} />
+      <SettingItem ionIconName={'settings-outline'} title={'设置'} onclick={() => { navigation.push("settings") }} />
     </View>
   )
 }
