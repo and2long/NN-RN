@@ -88,6 +88,7 @@ function BottomTabNavigator() {
         component={PrizeScreen}
         options={{
           tabBarIcon: ({ color }) => <Ionicons name="gift-outline" size={28} color={color} />,
+          title: '福利',
         }}
       />
       <BottomTab.Screen
@@ -95,6 +96,7 @@ function BottomTabNavigator() {
         component={MineScreen}
         options={{
           tabBarIcon: ({ color }) => <Ionicons name="person-circle-outline" size={30} color={color} />,
+          title: '我的',
         }}
       />
     </BottomTab.Navigator>
