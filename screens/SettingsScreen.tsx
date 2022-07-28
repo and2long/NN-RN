@@ -1,7 +1,8 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
-import React from "react";
-import { Alert, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import { Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { CustomAlertDialog } from '../components/CustomAlertDialog';
 import SettingItem from '../components/SettingItem';
 import Layout from '../constants/Layout';
 import { useAppDispatch } from '../redux/hooks';
@@ -10,24 +11,18 @@ import { RootStackParamList } from '../types';
 
 export default function SettingsScreen({ navigation }: NativeStackScreenProps<RootStackParamList, "settings">) {
 
+  const [modalVisible, setModalVisible] = useState(false);
   const dispatch = useAppDispatch()
 
-  const showLogoutDialog = () => Alert.alert(
-    "",
-    "确认退出登录？",
-    [
-      {
-        text: "取消",
-      },
-      {
-        text: "确认", onPress: () => {
-          dispatch(clearAuthState())
-          navigation.navigate("root")
-        }
-      }
-    ]
-  );
+  const hideModal = () => {
+    setModalVisible(false)
+  }
 
+  const confirmLogout = async () => {
+    hideModal()
+    dispatch(clearAuthState())
+    navigation.navigate("root")
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -40,11 +35,17 @@ export default function SettingsScreen({ navigation }: NativeStackScreenProps<Ro
       <SettingItem title={'隐私政策'} />
       <View style={styles.divider} />
       <View style={{ flex: 1 }} />
-      <TouchableOpacity onPress={showLogoutDialog}>
+      <TouchableOpacity onPress={() => { setModalVisible(true) }}>
         <View style={styles.btnLogout}>
           <Text>退出</Text>
         </View>
       </TouchableOpacity>
+
+      <CustomAlertDialog
+        visible={modalVisible}
+        title={'确认退出登录吗？'}
+        onCancelClick={hideModal}
+        onOkClick={confirmLogout} />
     </SafeAreaView>
   )
 }
