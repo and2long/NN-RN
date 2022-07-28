@@ -1,6 +1,7 @@
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, TouchableOpacity } from "react-native";
 import Layout from "../constants/Layout";
+import { Text, View } from './Themed';
 
 interface SettingItemProps {
   ionIconName?: React.ComponentProps<typeof Ionicons>['name']
@@ -34,7 +35,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    color: '#111111',
     flex: 1,
     marginLeft: 20
   }

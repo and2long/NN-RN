@@ -1,5 +1,6 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { Image, Platform, StyleSheet, Text, View } from "react-native";
+import { Image, Platform, StyleSheet } from "react-native";
+import { Text, View } from '../components/Themed';
 import { primaryColor } from "../constants/Colors";
 import Layout from "../constants/Layout";
 
@@ -11,7 +12,7 @@ interface PrizeHeaderParams {
 export default function PrizeHeader(params: PrizeHeaderParams) {
   return (
     <View>
-      <View style={styles.container}>
+      <View style={styles.container} lightColor="#eee">
         <Image source={require("../assets/images/prize_bg.png")} style={styles.headerBg} />
         <Text style={styles.headerTitie}>做任务 享免费排队加速</Text>
         <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={["rgba(255, 255, 255, 0.3)", "rgba(255, 255, 255, 0)"]} style={styles.headerSubtitleBg}>
@@ -19,7 +20,7 @@ export default function PrizeHeader(params: PrizeHeaderParams) {
         </LinearGradient>
         <PointView point={params.point} />
       </View>
-      <View style={styles.label}>
+      <View style={styles.label} lightColor="#eee">
         <Text style={styles.labelTite}>每日任务</Text>
         <Text style={styles.labelSubTite}>任务于每日00:00点更新</Text>
       </View>
@@ -29,8 +30,8 @@ export default function PrizeHeader(params: PrizeHeaderParams) {
 
 function PointView(params: { point: number }) {
   return (
-    <View style={styles.pointView}>
-      <View>
+    <View style={styles.pointView} darkColor="#000" lightColor="#fff">
+      <View style={{ backgroundColor: "#0000" }}>
         <Text style={styles.pointTitle}>{params.point}</Text>
         <Text style={styles.pointSubTitle}>已获得免排队积分</Text>
       </View>
@@ -72,7 +73,6 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 15
   },
   pointView: {
-    backgroundColor: "white",
     marginHorizontal: 15,
     paddingHorizontal: 20,
     borderRadius: 12,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     position: "absolute",
-    marginTop: headerBgHeight - 48
+    marginTop: headerBgHeight - 48,
   },
   pointTitle: {
     color: primaryColor,

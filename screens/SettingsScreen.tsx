@@ -1,9 +1,11 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
 import { CustomAlertDialog } from '../components/CustomAlertDialog';
 import SettingItem from '../components/SettingItem';
+import { Text, View } from '../components/Themed';
+import { dividerDark, dividerLight } from '../constants/Colors';
 import Layout from '../constants/Layout';
 import { useAppDispatch } from '../redux/hooks';
 import { clearAuthState } from '../redux/slices/authSlice';
@@ -25,42 +27,47 @@ export default function SettingsScreen({ navigation }: NativeStackScreenProps<Ro
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="dark" />
+    <View style={styles.container}>
+      <StatusBar />
+      <SafeAreaView style={styles.container}>
+        <SettingItem title={'检查更新'} />
+        <Divider />
+        <SettingItem title={'隐私政策'} />
+        <Divider />
 
-      <SettingItem title={'检查更新'} />
-      <View style={styles.divider} />
-      <SettingItem title={'隐私政策'} />
-      <View style={styles.divider} />
+        <View style={{ flex: 1 }} />
 
-      <View style={{ flex: 1 }} />
-
-      <TouchableOpacity onPress={() => { setModalVisible(true) }}>
-        <View style={styles.btnLogout}>
-          <Text>退出</Text>
-        </View>
-      </TouchableOpacity>
-      <CustomAlertDialog
-        visible={modalVisible}
-        title={'确认退出登录吗？'}
-        onCancelClick={hideModal}
-        onOkClick={confirmLogout} />
-    </SafeAreaView>
+        <TouchableOpacity onPress={() => { setModalVisible(true) }}>
+          <View style={styles.btnLogout} lightColor="#eee" darkColor="#222">
+            <Text>退出</Text>
+          </View>
+        </TouchableOpacity>
+        <CustomAlertDialog
+          visible={modalVisible}
+          title={'确认退出登录吗？'}
+          onCancelClick={hideModal}
+          onOkClick={confirmLogout} />
+      </SafeAreaView>
+    </View>
   )
 }
+
+const Divider = () => {
+  return (
+    <View style={styles.divider} lightColor={dividerLight} darkColor={dividerDark} />
+  )
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: 'white'
   },
-  divider: { height: 1, backgroundColor: "#eee", width: Layout.window.width - 40, marginHorizontal: 20 },
+  divider: { height: 1, width: Layout.window.width - 40, marginHorizontal: 20 },
   btnLogout: {
     width: Layout.window.width - 40,
     height: 50,
     borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#eee',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20

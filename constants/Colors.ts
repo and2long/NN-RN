@@ -1,5 +1,7 @@
 const tintColorLight = '#2f95dc';
 const tintColorDark = '#fff';
+export const dividerLight = '#eee';
+export const dividerDark = '#222';
 export const primaryColor = "#FD7C4B"
 export const accentColor = "#20C5CE"
 
@@ -13,7 +15,7 @@ export default {
   },
   dark: {
     text: '#fff',
-    background: '#000',
+    background: '#111',
     tint: tintColorDark,
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorDark,

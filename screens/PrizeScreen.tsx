@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
 import PrizeHeader from "../components/PrizeHeader";
 import TaskItem, { TaskItemProps } from "../components/TaskItem";
-import { View } from "../components/Themed";
+import { View } from '../components/Themed';
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { fetchAllTasks, getUserPoint } from "../redux/slices/prizeSlice";
 import { RootTabScreenProps } from "../types";
@@ -29,7 +29,7 @@ export default function PrizeScreen({ navigation }: RootTabScreenProps<'prize'>)
   }
 
   return (
-    <View style={styles.conatiner}>
+    <View style={styles.conatiner} lightColor="#eee">
       <PrizeHeader taskCount={allTasks.items.length} point={point} />
       {allTasks.status === 'idle' &&
         <FlatList
@@ -51,7 +51,6 @@ export default function PrizeScreen({ navigation }: RootTabScreenProps<'prize'>)
 const styles = StyleSheet.create({
   conatiner: {
     flex: 1,
-    backgroundColor: "#efefef"
   },
   indicator: {
     flex: 1

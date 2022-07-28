@@ -1,6 +1,7 @@
-import { Image, StyleSheet, Text, TouchableWithoutFeedback, View } from "react-native";
+import { Image, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { primaryColor } from "../constants/Colors";
 import Layout from "../constants/Layout";
+import { Text, View } from './Themed';
 
 export type TaskItemProps = {
   type: 'top' | 'middle' | 'bottom'
@@ -14,20 +15,20 @@ export default function TaskItem(props: TaskItemProps) {
     let style;
     switch (props.type) {
       case "top":
-        style = styles.firstContainer
+        style = [styles.container, styles.firstContainer]
         break;
       case "middle":
         style = styles.container
         break;
       case "bottom":
-        style = styles.lastContainer
+        style = [styles.container, styles.lastContainer]
         break;
     }
     return style
   }
 
   return (
-    <View style={getContainerStyle()}>
+    <View style={getContainerStyle()} lightColor="#fff" darkColor="#000">
       <Image source={require("../assets/images/ic_interactive.png")} style={styles.leading} />
       <View style={styles.content}>
         <Text style={styles.title} numberOfLines={1} ellipsizeMode={"tail"}>{props.title}</Text>
@@ -44,7 +45,6 @@ export default function TaskItem(props: TaskItemProps) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
     paddingHorizontal: 14,
     width: Layout.window.width - 15 * 2,
     height: 70,
@@ -53,24 +53,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 14
   },
   firstContainer: {
-    backgroundColor: "white",
-    paddingHorizontal: 14,
-    width: Layout.window.width - 15 * 2,
-    height: 70,
-    flexDirection: "row",
-    alignItems: "center",
-    marginHorizontal: 14,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
   },
   lastContainer: {
-    backgroundColor: "white",
-    paddingHorizontal: 14,
-    width: Layout.window.width - 15 * 2,
-    height: 70,
-    flexDirection: "row",
-    alignItems: "center",
-    marginHorizontal: 14,
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
     marginBottom: 15
@@ -83,15 +69,16 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     marginHorizontal: 10,
+    backgroundColor: '#0000'
   },
   title: {
     fontSize: 16,
     fontWeight: "bold",
-    color: "#02191A"
   },
   subTitle: {
     color: "#808080",
-    fontSize: 13
+    fontSize: 13,
+    marginTop: 3
   },
   trailing: {
     width: 72,

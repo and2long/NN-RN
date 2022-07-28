@@ -1,8 +1,8 @@
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import React, { useEffect } from "react";
-import { ActivityIndicator, BackHandler, Image, Platform, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native';
+import { ActivityIndicator, BackHandler, Image, Platform, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { View } from '../components/Themed';
+import { Text, View } from '../components/Themed';
 import { accentColor } from '../constants/Colors';
 import Layout from '../constants/Layout';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
@@ -24,7 +24,7 @@ export default function LoginScreen({ navigation }: RootStackScreenProps<'login'
         {
           Platform.OS !== 'web' &&
           <TouchableWithoutFeedback onPress={() => { BackHandler.exitApp() }}>
-            <AntDesign name="close" size={24} color="black" style={{ margin: 16 }} />
+            <AntDesign name="close" size={24} color="#aaa" style={{ margin: 16 }} />
           </TouchableWithoutFeedback>
         }
 
