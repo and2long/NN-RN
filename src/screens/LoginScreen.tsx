@@ -8,9 +8,8 @@ import Layout from '../constants/Layout';
 import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { getAuthState } from '../redux/slices/authSlice';
 import { login } from '../redux/slices/loginSlice';
-import { RootStackScreenProps } from "../types";
 
-export default function LoginScreen({ navigation }: RootStackScreenProps<'login'>) {
+export default function LoginScreen() {
   const loginState = useAppSelector(state => state.loginState)
   const dispatch = useAppDispatch()
 
