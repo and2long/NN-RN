@@ -1,0 +1,36 @@
+import type { PreloadedState } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
+import type { RenderOptions } from '@testing-library/react'
+import { render } from '@testing-library/react'
+import React, { PropsWithChildren } from 'react'
+import { Provider } from 'react-redux'
+import { authSlice } from '../redux/slices/authSlice'
+import { loginSlice } from '../redux/slices/loginSlice'
+import { allTasksSlice, userPointSlice } from '../redux/slices/prizeSlice'
+
+import type { AppStore, RootState } from '../redux/store'
+// As a basic setup, import your same slice reducers
+
+// This type interface extends the default options for render from RTL, as well
+// as allows the user to specify other things such as initialState, store.
+interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
+  preloadedState?: PreloadedState<RootState>
+  store?: AppStore
+}
+
+export function renderWithProviders(
+  ui: React.ReactElement,
+  {
+    preloadedState = {},
+    // Automatically create a store instance if no store was passed in
+    store = configureStore({ reducer: { authState: authSlice.reducer, loginState: loginSlice.reducer, userPoint: userPointSlice.reducer, allTasks: allTasksSlice.reducer }, preloadedState }),
+    ...renderOptions
+  }: ExtendedRenderOptions = {}
+) {
+  function Wrapper({ children }: PropsWithChildren<{}>): JSX.Element {
+    return <Provider store={store}>{children}</Provider>
+  }
+
+  // Return an object with the store and all of RTL's query functions
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
+}
