@@ -29,7 +29,7 @@ export default function TaskItem(props: TaskItemProps) {
 
   return (
     <View style={getContainerStyle()} lightColor="#fff" darkColor="#000">
-      <Image source={require("../assets/images/ic_interactive.png")} style={styles.leading} />
+      <Image source={require("../../assets/images/ic_interactive.png")} style={styles.leading} />
       <View style={styles.content}>
         <Text style={styles.title} numberOfLines={1} ellipsizeMode={"tail"}>{props.title}</Text>
         <Text style={styles.subTitle}>可看10次，观看1次积分+10</Text>

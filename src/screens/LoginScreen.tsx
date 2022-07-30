@@ -29,7 +29,7 @@ export default function LoginScreen({ navigation }: RootStackScreenProps<'login'
         }
 
         <View style={styles.content}>
-          <Image source={require("../assets/images/ic_logo.png")} style={styles.logo} />
+          <Image source={require("../../assets/images/ic_logo.png")} style={styles.logo} />
           <Text style={styles.phoneNumber}>188****8888</Text>
           <View style={styles.tipRow}>
             <MaterialIcons name="security" size={14} color="#d1d1d1" />

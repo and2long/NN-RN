@@ -1,8 +1,8 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { Image, Platform, StyleSheet } from "react-native";
-import { Text, View } from '../components/Themed';
 import { primaryColor } from "../constants/Colors";
 import Layout from "../constants/Layout";
+import { Text, View } from './Themed';
 
 interface PrizeHeaderParams {
   taskCount: number
@@ -13,7 +13,7 @@ export default function PrizeHeader(params: PrizeHeaderParams) {
   return (
     <View>
       <View style={styles.container} lightColor="#eee">
-        <Image source={require("../assets/images/prize_bg.png")} style={styles.headerBg} />
+        <Image source={require("../../assets/images/prize_bg.png")} style={styles.headerBg} />
         <Text style={styles.headerTitie}>做任务 享免费排队加速</Text>
         <LinearGradient start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} colors={["rgba(255, 255, 255, 0.3)", "rgba(255, 255, 255, 0)"]} style={styles.headerSubtitleBg}>
           <Text style={styles.headerSubTitle}>{`今日还可以完成${params.taskCount}个任务`}</Text>
@@ -35,7 +35,7 @@ function PointView(params: { point: number }) {
         <Text style={styles.pointTitle}>{params.point}</Text>
         <Text style={styles.pointSubTitle}>已获得免排队积分</Text>
       </View>
-      <Image source={require("../assets/images/ic_nav.png")} style={styles.pointNav} />
+      <Image source={require("../../assets/images/ic_nav.png")} style={styles.pointNav} />
     </View>
   );
 }

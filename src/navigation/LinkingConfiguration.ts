@@ -15,16 +15,16 @@ const linking: LinkingOptions<RootStackParamList> = {
     screens: {
       root: {
         screens: {
-          Prize: {
+          prize: {
             screens: {
               PrizeScreen: 'prize',
             },
           },
-          TabTwo: {
+          mine: {
             screens: {
-              TabTwoScreen: 'two',
-            },
-          },
+              MineScreen: 'mine',
+            }
+          }
         },
       },
       modal: 'modal',

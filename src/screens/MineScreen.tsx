@@ -46,9 +46,9 @@ export default function MineScreen({ navigation }: RootTabScreenProps<'mine'>) {
     <View style={styles.container}>
       <StatusBar style="light" />
       <View style={styles.header}>
-        <Image source={require("../assets/images/mine_bg.png")} style={styles.headerBg} />
+        <Image source={require("../../assets/images/mine_bg.png")} style={styles.headerBg} />
         <TouchableWithoutFeedback onPress={pickImage}>
-          <Image source={image ? { uri: image } : require("../assets/images/avatar.webp")} style={styles.avatar} />
+          <Image source={image ? { uri: image } : require("../../assets/images/avatar.webp")} style={styles.avatar} />
         </TouchableWithoutFeedback>
         <Text style={styles.nickName}>快乐男孩</Text>
         <Text style={styles.userId}>ID:8888</Text>
