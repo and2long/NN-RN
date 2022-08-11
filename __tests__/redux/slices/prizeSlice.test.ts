@@ -1,5 +1,5 @@
-import { getUserPoint } from '../../../redux/slices/prizeSlice';
-import { setupStore } from '../../../redux/store';
+import { getUserPoint } from '../../../src/redux/slices/prizeSlice';
+import { setupStore } from '../../../src/redux/store';
 
 test(`get user point`, () => {
   let store = setupStore()
