@@ -4,7 +4,7 @@ import PrizeHeader from "../components/PrizeHeader";
 import TaskItem, { TaskItemProps } from "../components/TaskItem";
 import { View } from '../components/Themed';
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { fetchAllTasks, getUserPoint } from "../redux/slices/prizeSlice";
+import { getAllTasks, getUserPoint } from "../redux/slices/prizeSlice";
 import { RootTabScreenProps } from "../types";
 
 export default function PrizeScreen({ navigation }: RootTabScreenProps<'prize'>) {
@@ -15,7 +15,7 @@ export default function PrizeScreen({ navigation }: RootTabScreenProps<'prize'>)
 
   useEffect(() => {
     dispatch(getUserPoint())
-    dispatch(fetchAllTasks())
+    dispatch(getAllTasks())
   }, [])
 
   function getItemType(index: number): TaskItemProps["type"] {

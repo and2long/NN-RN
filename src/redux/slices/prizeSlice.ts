@@ -33,20 +33,20 @@ export const allTasksSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllTasks.pending, (state) => {
+      .addCase(getAllTasks.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchAllTasks.fulfilled, (state, action) => {
+      .addCase(getAllTasks.fulfilled, (state, action) => {
         state.status = 'idle';
         state.items = action.payload
       })
-      .addCase(fetchAllTasks.rejected, (state) => {
+      .addCase(getAllTasks.rejected, (state) => {
         state.status = 'failed';
       });
   }
 })
 
-export const fetchAllTasks = createAsyncThunk('prize/getAllTasks', async () => {
+export const getAllTasks = createAsyncThunk('prize/getAllTasks', async () => {
   await sleep(1000)
   const names = [
     "开屏广告",
